@@ -13,3 +13,9 @@ Primero necesitamos entender los requerimientos:
 
 Imaginemos el siguiente escenario:
 
+Tenemos una aplicación IaaS, muy simple que se compone de dos capas: web y base de datos. Adicionalmente estos servidores son Windows y están unidos a un dominio de Active Directory.
+
+Cada capa de la aplicación está en su respectiva subnet (SN_Web y SN_DB), como así también los controladores de dominio se encuentran en su propia subnet que corresponde a los servicios centrales (SN_CIT).
+
+![](https://github.com/paratz/paratz.github.io/blob/master/scenario_noasg.jpg)
+
