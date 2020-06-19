@@ -116,7 +116,7 @@ Otro requerimiento, asumido, pero no listado es la posibilidad de administrar lo
 |NSG|Aplicado a |Prioridad|Dirección|Regla|Desde|Hacia|Puertos|
 |---|---|---|---|---|---|---|---|
 |NSG_SN_Web|Subnet Web|450|Incoming|app1 - Allow Web Traffic n/s|*|asg_app1_web|HTTPS|
-|NSG_SN_Web|Subnet Web|480|Incoming|**inf Allow PAW Management Traffic n/s**|asg_paws|asg_domainmembers|RDP, RM, RPS|
+|NSG_SN_Web|Subnet Web|480|Incoming|**inf - Allow PAW Management Traffic n/s**|asg_paws|asg_domainmembers|RDP, RM, RPS|
 |NSG_SN_Web|Subnet Web|440|Outgoing|app1 - Allow DB Traffic n/s|asg_app1_web|asg_app1_db|SQL|
 |NSG_SN_Web|Subnet Web|470|Outgoing|inf - Allow Domain Traffic n/s|asg_domainmembers|asg_dcs|Kerberos, DNS, RPC|
 |NSG_SN_Web|Subnet Web|480|Outgoing|inf - Allow Azure Mgmt Taffic n/s|asg_domainmembers|Service Tag: AzureMonitor, Backup|HTTPS|
@@ -125,7 +125,7 @@ Otro requerimiento, asumido, pero no listado es la posibilidad de administrar lo
 |NSG|Aplicado a |Prioridad|Dirección|Regla|Desde|Hacia|Puertos|
 |---|---|---|---|---|---|---|---|
 |NSG_SN_DB|Subnet Database|460|Incoming|app1 - Allow DB Traffic n/s|asg_app1_web|asg_app1_db|SQL|
-|NSG_SN_DB|Subnet DB|480|Incoming|**inf Allow PAW Management Traffic n/s**|asg_paws|asg_domainmembers|RDP, RM, RPS|
+|NSG_SN_DB|Subnet DB|480|Incoming|**inf - Allow PAW Management Traffic n/s**|asg_paws|asg_domainmembers|RDP, RM, RPS|
 |NSG_SN_DB|Subnet DB|470|Outgoing|inf - Allow Domain Traffic n/s|asg_domainmembers|asg_dcs|Kerberos, DNS, RPC|
 |NSG_SN_DB|Subnet DB|480|Outgoing|inf - Allow Azure Mgmt Taffic n/s|asg_domainmembers|Service Tag: AzureMonitor, Backup|HTTPS|
 
@@ -134,7 +134,7 @@ Otro requerimiento, asumido, pero no listado es la posibilidad de administrar lo
 |---|---|---|---|---|---|---|---|
 |NSG_SN_CIT|Subnet Central IT|470|Incoming|inf - Allow Domain Traffic n/s|asg_domainmembers|asg_dcs|Kerberos, DNS, RPC|
 |NSG_SN_CIT|Subnet Central IT|480|Outgoing|inf - Allow Azure Mgmt Taffic n/s|asg_domainmembers|Service Tag: AzureMonitor, Backup|HTTPS|
-|NSG_SN_CIT|Subnet Central IT|490|Outgoing|**inf Allow PAW Management Traffic n/s**|asg_paws|asg_domainmembers|RDP, RM, RPS|
+|NSG_SN_CIT|Subnet Central IT|490|Outgoing|**inf - Allow PAW Management Traffic n/s**|asg_paws|asg_domainmembers|RDP, RM, RPS|
 
 
 Con todas las reglas agregadas a este punto ya cumplimos los requisitos de la conectividad que debemos permitir, sin embargo los NSG tienen reglas default que permiten el resto del tráfico (IntraVnet o saliente a internet), por lo cual agregaremos nuevas reglas que bloqueen todo el tráfico que no coincida con el definido de manera explícita.
@@ -144,7 +144,7 @@ Con todas las reglas agregadas a este punto ya cumplimos los requisitos de la co
 |NSG|Aplicado a |Prioridad|Dirección|Regla|Desde|Hacia|Puertos|
 |---|---|---|---|---|---|---|---|
 |NSG_SN_Web|Subnet Web|450|Incoming|app1 - Allow Web Traffic n/s|*|asg_app1_web|HTTPS|
-|NSG_SN_Web|Subnet Web|480|Incoming|inf Allow PAW Management Traffic n/s|asg_paws|asg_domainmembers|RDP, RM, RPS|
+|NSG_SN_Web|Subnet Web|480|Incoming|inf - Allow PAW Management Traffic n/s|asg_paws|asg_domainmembers|RDP, RM, RPS|
 |NSG_SN_Web|Subnet Web|500|Incoming|**inf - Block north/west east/west Unmatched Traffic**|*|*|*|
 |NSG_SN_Web|Subnet Web|440|Outgoing|app1 - Allow DB Traffic n/s|asg_app1_web|asg_app1_db|SQL|
 |NSG_SN_Web|Subnet Web|470|Outgoing|inf - Allow Domain Traffic n/s|asg_domainmembers|asg_dcs|Kerberos, DNS, RPC|
@@ -155,7 +155,7 @@ Con todas las reglas agregadas a este punto ya cumplimos los requisitos de la co
 |NSG|Aplicado a |Prioridad|Dirección|Regla|Desde|Hacia|Puertos|
 |---|---|---|---|---|---|---|---|
 |NSG_SN_DB|Subnet Database|460|Incoming|app1 - Allow DB Traffic n/s|asg_app1_web|asg_app1_db|SQL|
-|NSG_SN_DB|Subnet DB|480|Incoming|inf Allow PAW Management Traffic n/s|asg_paws|asg_domainmembers|RDP, RM, RPS|
+|NSG_SN_DB|Subnet DB|480|Incoming|inf - Allow PAW Management Traffic n/s|asg_paws|asg_domainmembers|RDP, RM, RPS|
 |NSG_SN_DB|Subnet DB|500|Incoming|**inf - Block north/west east/west Unmatched Traffic**|*|*|*|
 |NSG_SN_DB|Subnet DB|470|Outgoing|inf - Allow Domain Traffic n/s|asg_domainmembers|asg_dcs|Kerberos, DNS, RPC|
 |NSG_SN_DB|Subnet DB|480|Outgoing|inf - Allow Azure Mgmt Taffic n/s|asg_domainmembers|Service Tag: AzureMonitor, Backup|HTTPS|
@@ -167,7 +167,7 @@ Con todas las reglas agregadas a este punto ya cumplimos los requisitos de la co
 |NSG_SN_CIT|Subnet Central IT|470|Incoming|inf - Allow Domain Traffic n/s|asg_domainmembers|asg_dcs|Kerberos, DNS, RPC|
 |NSG_SN_Web|Subnet Web|500|Incoming|**inf - Block north/west east/west Unmatched Traffic**|*|*|*|
 |NSG_SN_CIT|Subnet Central IT|480|Outgoing|inf - Allow Azure Mgmt Taffic n/s|asg_domainmembers|Service Tag: AzureMonitor, Backup|HTTPS|
-|NSG_SN_CIT|Subnet Central IT|490|Outgoing|inf Allow PAW Management Traffic n/s|asg_paws|asg_domainmembers|RDP, RM, RPS|
+|NSG_SN_CIT|Subnet Central IT|490|Outgoing|inf - Allow PAW Management Traffic n/s|asg_paws|asg_domainmembers|RDP, RM, RPS|
 |NSG_SN_CIT|Subnet Central IT|500|Outgoing|**inf - Block north/west east/west Unmatched Traffic**|*|*|*|
 
 ## Palabras Finales:
